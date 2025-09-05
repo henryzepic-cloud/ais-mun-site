@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AIS MUN - Model United Nations</title>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            color: #333;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: #1a4e8e;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #0d3a6e;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #1a4e8e;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: #1a4e8e;
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+        
+        .logo-img img {
+            width: 100%;
+            height: auto;
+        }
+        
+        .logo-text {
+            text-transform: uppercase;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            color: #1a4e8e;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        nav ul li a:hover {
+            color: #1a4e8e;
+        }
+        
+        /* Hero Section */
+        .hero {
+    background: url("images/2025.png") no-repeat center center;
+    background-size: cover;
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 0;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #1a4e8e;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Secretariat Section */
+        .secretariat {
+            padding: 80px 0;
+            background: #f2f7fd;
+        }
+        
+        .secretariat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .secretariat-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+        
+        .secretariat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .secretariat-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .secretariat-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .secretariat-content {
+            padding: 20px;
+        }
+        
+        .secretariat-content h3 {
+            color: #1a4e8e;
+            margin-bottom: 5px;
+        }
+        
+        .secretariat-content .position {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        /* Committees Section */
+        .committees {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .committee-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .committee-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .committee-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .committee-img {
+            height: 180px;
+            background-color: #1a4e8e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .committee-content {
+            padding: 20px;
+        }
+        
+        .committee-content h3 {
+            color: #1a4e8e;
+            margin-bottom: 10px;
+        }
+        
+        /* Registration Section */
+        .registration {
+            padding: 80px 0;
+            background: #f2f7fd;
+            text-align: center;
+        }
+        
+        .registration p {
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background: #1a4e8e;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: white;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            transition: background 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    
+.hero { margin: 0; padding: 0; }
+
+:target { scroll-margin-top: 100px; }
+</style>
+<style id="mun-headshot-fix">
+/* Headshot crop fix: keep faces visible, uniform card height */
+.secretariat .secretariat-img{
+    height: 320px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background: #fff;
+}
+.secretariat .secretariat-img img{ display: block; 
+    width: 100%;
+    height: 100%;
+    object-fit: cover !important;
+    object-position: top center !important;
+}
+@media (max-width: 520px){
+  .secretariat .secretariat-img{ height: 270px; }
+}
+
+
+/* Improve rendering and avoid textured artifacts */
+.secretariat .secretariat-img img{
+    image-rendering: auto;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform;
+}
+</style>
+<style id="committee-hover-style">
+a.committee-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+a.committee-link .committee-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+a.committee-link .committee-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+</style></head>
+<body>
+<!-- Header -->
+<header>
+<div class="container">
+<div class="header-content">
+<div class="logo">
+<div class="logo-img">
+<img alt="AIS MUN Logo" src="images/logo.png"/>
+</div>
+<div class="logo-text">
+<h1>AIS Model United Nations</h1>
+</div>
+</div>
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#secretariat">Secretariat</a></li>
+<li><a href="#committees">Committees</a></li>
+<li><a href="#registration">Registration</a></li><li><a href="#downloads">Downloads</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</div>
+</div>
+</header>
+<!-- Hero Section -->
+<section class="hero" id="home"><img alt="AIS MUN 2025 Banner" src="images/2025.png" style="width:100%; height:auto; display:block;"/><div class="hero-overlay" style="text-align:center; margin-top:-80px;"><a class="btn" href="#registration">Register Now</a></div></section>
+<!-- About Section -->
+<section class="about" id="about">
+<div class="container">
+<div class="section-title">
+<h2>About AIS MUN</h2>
+</div>
+<div class="about-content">
+<div class="about-text">
+<h3>Our Mission</h3>
+<p>The Association International School Model United Nations (AIS MUN) was established with the goal of promoting global awareness and developing diplomatic skills among youth.</p>
+<p>Our MUN program provides students with a platform to debate global issues, develop public speaking skills, and engage in meaningful discussions that mirror the real United Nations processes.</p>
+<p>We aim to host conferences that attract hundreds of students from international schools across the country, creating a diverse and enriching experience for all participants.</p>
+</div>
+<div class="about-image">
+<img alt="MUN Conference" src="images\mission.jpg"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Secretariat Section -->
+<section class="secretariat" id="secretariat">
+<div class="container">
+<div class="section-title">
+<h2>Secretariat</h2>
+</div>
+<div class="secretariat-grid"><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Ruth Nwarueze" src="images/IMG_6866.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Ruth Nwarueze</h3>
+<div class="position">Head Secretary-General</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Phronesis Sackitey" src="images/IMG_6796.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Phronesis Sackitey</h3>
+<div class="position">Head Secretary-General</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Samira Houdrouge" src="images/IMG_6838.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Samira Houdrouge</h3>
+<div class="position">Deputy Secretary-General</div>
+<p></p>
+</div>
+</div>
+<div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Andrew Amoateng" src="images/andrew.jpg"/>
+</div>
+<div class="secretariat-content">
+<h3>Andrew Amoateng</h3>
+<div class="position">Deputy Secretary-General</div>
+<p></p>
+</div>
+</div>
+<div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Deborah Nwarueze" src="images/IMG_6846.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Deborah Nwarueze</h3>
+<div class="position">Secretary-General of Logistics and Sponsorships</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Eugenia Acheampong" src="images/eugenia edited.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Eugenia Acheampong</h3>
+<div class="position">Secretary-General of Logistics and Sponsorships</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Madison Owusu" src="images/IMG_6911.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Madison Owusu</h3>
+<div class="position">Secretary-General of Administration</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Tiffany Okyere" src="images/IMG_6831.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Tiffany Okyere</h3>
+<div class="position">Secretary-General of Administration</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Sheena Baddoo" src="images/sheena edited.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Sheena Baddoo</h3>
+<div class="position">Secretary-General of Administration</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Rayna Adovelande" src="images/IMG_6786.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Rayna Adovelande</h3>
+<div class="position">Secretary-General of Communications</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Anna A Kumi Amoah" src="images/IMG_2474.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Anna A Kumi Amoah</h3>
+<div class="position">Secretary-General of Communications</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Jasmin Randolph" src="images/IMG_6734.png" style="object-fit: cover; object-position: top center;"/>
+</div>
+<div class="secretariat-content">
+<h3>Jasmin Randolph</h3>
+<div class="position">Secretary-General of Delegates &amp; Hosting</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Chanelle Anewenah" src="images/IMG_6823.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Chanelle Anewenah</h3>
+<div class="position">Secretary-General of Delegates &amp; Hosting</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Tracy Ellis" src="images/IMG_6784.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Tracy Ellis</h3>
+<div class="position">Secretary-General of Delegates &amp; Hosting</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Seyram Agogo" src="images/IMG_6777.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Seyram Agogo</h3>
+<div class="position">Director of Operations</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Samuel Ayih" src="images/IMG_6744.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Samuel Ayih</h3>
+<div class="position">Director of Operations</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Henry Casely-Hayford" src="images/IMG_6925.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Henry Casely-Hayford</h3>
+<div class="position">Director of Tech</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Tiffany Antwi" src="images/IMG_6890.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Tiffany Antwi</h3>
+<div class="position">Director of Media</div>
+<p></p>
+</div>
+</div><div class="secretariat-card">
+<div class="secretariat-img">
+<img alt="Albert Ackon" src="images/IMG_2475.png"/>
+</div>
+<div class="secretariat-content">
+<h3>Albert Ackon</h3>
+<div class="position">Director of Media</div>
+<p></p>
+</div>
+</div></div>
+</div>
+</section>
+<!-- Committees Section -->
+<section class="committees" id="committees">
+<div class="container">
+<div class="section-title">
+<h2>Committees and Topics</h2>
+</div>
+<div class="committee-grid"><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=1dUd8p2Rgx1new6lXRTPJer11YSGoAB50"><div class="committee-card"><div class="committee-img">WHO</div><div class="committee-content"><h3>World Health Organization (WHO)</h3><p>Ensuring Good Health and Well-being through equity and accessibility to medication for all.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=1Z96gR4Vo8sl4zkKKXW7xE4ITzLAuCYps"><div class="committee-card"><div class="committee-img">ECOSOC</div><div class="committee-content"><h3>United Nations Economic and Social Council (ECOSOC)</h3><p>Ensuring inclusivity and dignity for the Afghan female: The role of education in breaking cycles of ignorance and repression.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=1tTc57tmcTecNO6aQFg-fPqMaoG9ZFEEL"><div class="committee-card"><div class="committee-img">UNHCR</div><div class="committee-content"><h3>United Nations High Commissioner for Refugees (UNHCR)</h3><p>Promoting tolerance and peaceful co-existence between indigenes and refugee/migrant communities – the need for a new direction and fresh ideas.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=149AzzWXFOPjTfh3ScOOLskYwJTGmjT5K"><div class="committee-card"><div class="committee-img">UNHRC</div><div class="committee-content"><h3>United Nations Human Rights Council (UNHRC)</h3><p>Peace, Justice and Strong institutions: the role of Civil Society organizations and citizens in enforcing human dignity and equality before the law.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=1fQzf_2JN_fBS7qlugparrZvBoUQkzRGs"><div class="committee-card"><div class="committee-img">DISEC</div><div class="committee-content"><h3>Disarmament and International Security Committee (DISEC)</h3><p>Curbing the new arms race: the need for stricter international regime to foster global peace and security.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=1KWbtxNiQv3iEVSKVUFmeZlMw0HhWFYE1"><div class="committee-card"><div class="committee-img">FAO</div><div class="committee-content"><h3>Food and Agriculture Organization (FAO)</h3><p>Zero Hunger and Responsible consumption: Striking a balance in ensuring food security and a sustainable future.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=1fRGDMQ2cNR5ciz3VMXrmoe49FUtjM8NT"><div class="committee-card"><div class="committee-img">WTO</div><div class="committee-content"><h3>World Trade Organization (WTO)</h3><p>Resetting and ensuring equity in Global trade.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=1MNeuE2Kz43HhdZpBV3fTomgQiSQ-0Jum"><div class="committee-card"><div class="committee-img">ILO</div><div class="committee-content"><h3>International Labour Organization (ILO)</h3><p>Combating global human trafficking and forced labor to attain decent work and economic growth.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=1tNpWfhSpWFmLnzGROM86UsELblSG0eEr"><div class="committee-card"><div class="committee-img">BRICS</div><div class="committee-content"><h3>BRICS</h3><p>Counterbalancing the existing unipolar global order through fresh and bold initiatives in an increasingly polarized international system.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=1eDEw78kik28eWIF0mYc5zsGYCTdmQcNg"><div class="committee-card"><div class="committee-img">IOM</div><div class="committee-content"><h3>International Organization for Migration (IOM)</h3><p>Combatting growing illegal and unregulated international migration by reducing inequality: The role of governments.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=13FeLGX6uuP2veX6kJF6YfmS1jLQx43FJ"><div class="committee-card"><div class="committee-img">AU</div><div class="committee-content"><h3>African Union Committee (AU)</h3><p>Ensuring equal opportunities for all Africans: Building climate change proof farming systems and facilitating access to economic resources, as well as appropriate new technology to combat brain-drain and illegal migration.</p></div></div></a><a class="committee-link" download="True" href="https://drive.google.com/uc?export=download&amp;id=1UCowkDpGgnNpbUm66FDkbB_aLKtLnDug"><div class="committee-card"><div class="committee-img">UNICEF</div><div class="committee-content"><h3>United Nations Children’s Education Fund (UNICEF)</h3><p>Building the future we want, developing new funding modules to fund equal and quality access to education for all children.</p></div></div></a></div>
+</div>
+</section>
+<!-- Registration Section -->
+<section class="registration" id="registration">
+<div class="container">
+<div class="section-title">
+<h2>Registration</h2>
+</div>
+<p>The Association International School Model United Nations (AIS MUN) was established with the goal of promoting global awareness and developing diplomatic skills among youth.</p>
+<a class="btn" href="https://forms.gle/5vefk3ud6ysB8NH66" target="_blank">Register as Delegate</a>
+<a class="btn" href="https://forms.gle/2sF2fiXv7M6TmYfz8" target="_blank">Register as Chair</a>
+</div>
+</section><section class="downloads" id="downloads" style="padding:40px 0; background:#f2f7fd; text-align:center;">
+<div class="container">
+<div class="section-title"><h2>Downloads</h2></div>
+<p>Quick access to key documents for delegates and chairs.</p>
+<div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-top:16px;">
+<a class="btn" download="True" href="https://drive.google.com/uc?export=download&amp;id=16wsmUbJLpeBgLZqUWQQSVRS1ihjNZrJP" rel="noopener">Chair Guide</a>
+<a class="btn" download="True" href="https://drive.google.com/uc?export=download&amp;id=1XqqVKe09Rbp_P5JCHN0gQJDRqBzFakGb" rel="noopener">Country Profiles</a>
+<a class="btn" download="True" href="https://drive.google.com/uc?export=download&amp;id=1lgWv8JrogzroFQK3WDvXUtsBL2_TnB9U" rel="noopener">Delegate Guide</a>
+<a class="btn" download="True" href="https://drive.google.com/uc?export=download&amp;id=1nuZiAVjLISUtTBtPgmRAXtvWdrya72E0" rel="noopener">Topic Descriptions</a>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer id="contact">
+<div class="container">
+<div class="footer-content">
+<div class="footer-section">
+<h3>Contact Us</h3>
+<ul class="contact-info">
+<li><i class="fas fa-map-marker-alt"></i> 12 Lumumba Street, Accra, Ghana</li>
+<li><i class="fas fa-phone"></i> +233 30 277 7735</li>
+<li><i class="fas fa-envelope"></i> mun-ais@ais.edu.gh</li>
+</ul>
+</div>
+<div class="footer-section">
+<h3>Quick Links</h3>
+<ul class="contact-info">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#secretariat">Secretariat</a></li>
+<li><a href="#committees">Committees</a></li>
+<li><a href="#registration">Registration</a></li>
+<li><a href="#downloads">Downloads</a></li></ul>
+</div>
+<div class="footer-section">
+<h3>Connect With Us</h3>
+<p>Follow our social media channels for updates and announcements.</p>
+<div class="social-links"><a href="https://www.instagram.com/aismungh/" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i></a><a href="https://www.tiktok.com/@aismunghh" rel="noopener noreferrer" target="_blank"><i class="fab fa-tiktok"></i></a></div>
+</div>
+</div>
+<div class="footer-bottom">
+<p>© 2025 AIS Model United Nations. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</body>
+</html>
